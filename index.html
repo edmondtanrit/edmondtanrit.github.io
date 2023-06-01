@@ -13,65 +13,81 @@
   </head>
 
  <body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">Edmondfy</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarColor01">
-        <ul class="navbar-nav me-auto">
-          <li class="nav-item">
-            <a class="nav-link active" href="#">Home
-              <span class="visually-hidden">(current)</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="playlists.html">Playlists</a>
-          </li>
-        </ul>
-        <form class="d-flex">
-          <input class="form-control me-sm-2" type="search" placeholder="Search for Music">
-          <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-        </form>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Edmondfy</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarColor01">
+          <ul class="navbar-nav me-auto">
+            <li class="nav-item">
+              <a class="nav-link active" href="#">Home
+                <span class="visually-hidden">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="playlists.html">Playlists</a>
+            </li>
+          </ul>
+          <form class="d-flex">
+            <input class="form-control me-sm-2" type="search" placeholder="Search for Music">
+            <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+          </form>
+        </div>
       </div>
-    </div>
-  </nav>
+    </nav>
 
-  <h1></h1>
-  <div id="player"></div>
+    <h1></h1>
+    <div id="player"></div>
 
-  <script src="https://www.youtube.com/iframe_api"></script>
-  <script>
-    const form = document.querySelector('form');
-    const searchInput = document.querySelector('.form-control');
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script>
+      const form = document.querySelector('form');
+      const searchInput = document.querySelector('.form-control');
+      let player;
 
-    form.addEventListener('submit', function(event) {
-      event.preventDefault();
+      form.addEventListener('submit', function(event) {
+        event.preventDefault();
 
-      const keyword = searchInput.value;
-      const apiKey = 'AIzaSyAafDILSk1h5KYxonE7Ta70sj6ZLdoqKp4'; // Replace with your YouTube Data API key
+        const keyword = searchInput.value;
+        const apiKey = 'AIzaSyAafDILSk1h5KYxonE7Ta70sj6ZLdoqKp4';
 
-      const url = `https://www.googleapis.com/youtube/v3/search?key=${apiKey}&part=snippet&q=${encodeURIComponent(keyword)}&type=video&maxResults=1`;
+        const searchUrl = `https://www.googleapis.com/youtube/v3/search?key=${apiKey}&part=snippet&q=${encodeURIComponent(keyword)}&type=video&maxResults=1`;
 
-      fetch(url)
-        .then(response => response.json())
-        .then(data => {
-          const firstResult = data.items[0];
-          const videoId = firstResult.id.videoId;
+        fetch(searchUrl)
+          .then(response => response.json())
+          .then(data => {
+            const firstResult = data.items[0];
+            const videoId = firstResult.id.videoId;
 
-          // Create the YouTube video player
-          new YT.Player('player', {
-            height: '360',
-            width: '640',
-            videoId: videoId
+            if (player) {
+              player.loadVideoById(videoId);
+            } else {
+              // Create the YouTube video player
+              player = new YT.Player('player', {
+                height: '360',
+                width: '640',
+                videoId: videoId,
+                playerVars: {
+                  autoplay: 1, // Autoplay the video
+                  playsinline: 1 // Show video inline on supported devices
+                },
+                events: {
+                  'onReady': onPlayerReady
+                }
+              });
+            }
+          })
+          .catch(error => {
+            console.error('Error:', error);
           });
-        })
-        .catch(error => {
-          console.error('Error:', error);
-        });
-    });
-  </script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
-</body>
+      });
+
+      function onPlayerReady(event) {
+        event.target.playVideo();
+      }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
 </html>
