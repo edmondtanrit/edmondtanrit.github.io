@@ -1,8 +1,10 @@
+
 <!DOCTYPE html>
 <html>
 <head>
   <title>YouTube Audio Player</title>
-  <script src="https://www.youtube.com/iframe_api"></script>
+  <p> Hello </p>
+  <script src="https://www.youtube.com/watch?v=q6zrcUkXfgc"></script>
   <script>
     // YouTube API callback function
     function onYouTubeIframeAPIReady() {
@@ -10,7 +12,7 @@
       new YT.Player('player', {
         height: '0',
         width: '0',
-        videoId: 'https://www.youtube.com/watch?v=q6zrcUkXfgc',
+        videoId: 'VIDEO_ID',
         playerVars: {
           autoplay: 0,
           controls: 1,
@@ -27,9 +29,17 @@
 
     // YouTube player ready event
     function onPlayerReady(event) {
-      // Allow the player to be controlled by JavaScript
-      event.target.setPlaybackQuality('small');
-      event.target.pauseVideo();
+      // Get the audio URL
+      var audioUrl = event.target.getVideoUrl();
+      audioUrl = audioUrl.replace('https://www.youtube.com/watch?v=', 'https://www.youtube.com/embed/');
+
+      // Create an HTML audio element
+      var audioElement = document.createElement('audio');
+      audioElement.src = audioUrl;
+      audioElement.controls = true;
+
+      // Append the audio element to the body or a specific container
+      document.body.appendChild(audioElement);
     }
 
     // YouTube player state change event
