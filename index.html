@@ -1,54 +1,13 @@
-
-<!DOCTYPE html>
 <html>
 <head>
-  <title>YouTube Audio Player</title>
-  <p> Hello </p>
-  <script src="https://www.youtube.com/watch?v=q6zrcUkXfgc"></script>
-  <script>
-    // YouTube API callback function
-    function onYouTubeIframeAPIReady() {
-      // Create a new YouTube player
-      new YT.Player('player', {
-        height: '0',
-        width: '0',
-        videoId: 'VIDEO_ID',
-        playerVars: {
-          autoplay: 0,
-          controls: 1,
-          rel: 0,
-          showinfo: 0,
-          start: 0
-        },
-        events: {
-          onReady: onPlayerReady,
-          onStateChange: onPlayerStateChange
-        }
-      });
-    }
+<h1> Testing </h1>
 
-    // YouTube player ready event
-    function onPlayerReady(event) {
-      // Get the audio URL
-      var audioUrl = event.target.getVideoUrl();
-      audioUrl = audioUrl.replace('https://www.youtube.com/watch?v=', 'https://www.youtube.com/embed/');
-
-      // Create an HTML audio element
-      var audioElement = document.createElement('audio');
-      audioElement.src = audioUrl;
-      audioElement.controls = true;
-
-      // Append the audio element to the body or a specific container
-      document.body.appendChild(audioElement);
-    }
-
-    // YouTube player state change event
-    function onPlayerStateChange(event) {
-      // Do something when the player state changes (e.g., track when audio finishes playing)
-    }
-  </script>
-</head>
 <body>
-  <div id="player"></div>
-</body>
+
+  <embed style = "width:720px; height:450px;" src="https://www.youtube.com/embed/v=q6zrcUkXfgc"> </embed>
+  </body>
+
+
+
+</head>
 </html>
