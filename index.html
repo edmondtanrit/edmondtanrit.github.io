@@ -1,11 +1,44 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Embedding YouTube Video</title>
+  <title>YouTube Audio Player</title>
+  <script src="https://www.youtube.com/iframe_api"></script>
+  <script>
+    // YouTube API callback function
+    function onYouTubeIframeAPIReady() {
+      // Create a new YouTube player
+      new YT.Player('player', {
+        height: '0',
+        width: '0',
+        videoId: 'https://www.youtube.com/watch?v=q6zrcUkXfgc',
+        playerVars: {
+          autoplay: 0,
+          controls: 1,
+          rel: 0,
+          showinfo: 0,
+          start: 0
+        },
+        events: {
+          onReady: onPlayerReady,
+          onStateChange: onPlayerStateChange
+        }
+      });
+    }
+
+    // YouTube player ready event
+    function onPlayerReady(event) {
+      // Allow the player to be controlled by JavaScript
+      event.target.setPlaybackQuality('small');
+      event.target.pauseVideo();
+    }
+
+    // YouTube player state change event
+    function onPlayerStateChange(event) {
+      // Do something when the player state changes (e.g., track when audio finishes playing)
+    }
+  </script>
 </head>
 <body>
-	<p>  hi </p>
-  <!-- Replace 'VIDEO_ID' with the actual video ID of the YouTube video -->
-  <iframe width="560" height="315" src="https://www.youtube.com/watch?v=q6zrcUkXfgc" frameborder="0" allowfullscreen></iframe>
+  <div id="player"></div>
 </body>
 </html>
