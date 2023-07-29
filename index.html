@@ -11,7 +11,7 @@
 
   <style>
     .done {
-      font-size: 20px;
+      font-size: 17px;
       font-family: "San Francisco", Arial, sans-serif;
       vertical-align: left;
       margin-left: 0px;
@@ -70,13 +70,14 @@
     }
 
     .transaction-table th {
-      background-color: #f2f2f2;
+      background-color:  white;
     }
 
     .icons {
   width: 15%;
   display: inline-block; /* Set the icon as an inline-block element */
   vertical-align: middle; /* Align the icon vertically in the middle */
+   margin-left: -15px;
 }
 
 .location {
@@ -87,6 +88,7 @@
   vertical-align: top; /* Align the location text vertically in the middle */
   margin-left: 5px; /* Add some margin to separate the icon and text */
   margin-top: -15px;
+  background-color:  white;
 }
 .description{
  font-size: 15px;
@@ -96,19 +98,20 @@
   vertical-align: top; /* Align the location text vertically in the middle */
   margin-left: 60px; /* Add some margin to separate the icon and text */
   margin-top: -40px;
+  background-color:  white;
 }
 .description2{
  font-size: 15px;
   font-weight: 100;
-  color:  gray;
+  background-color:  white;
   display: inline-block; /* Set the location text as an inline-block element */
   vertical-align: top; /* Align the location text vertically in the middle */
-  margin-left: -132px; /* Add some margin to separate the icon and text */
-  margin-top: -15px;
+  margin-left: -120px; /* Add some margin to separate the icon and text */
+  margin-top: -10px;
 }
 .price{
   font-size: 15px;
-  font-weight: 500;
+  font-weight: 400;
   color:  black;
   display: inline-block; /* Set the location text as an inline-block element */
   vertical-align: top; /* Align the location text vertically in the middle */
@@ -161,11 +164,10 @@
           <img class="debit" src="images/debitcard.png" alt="Slide 1">
           
           <p class="trans"><b>Latest Transactions </b></p>
-          <p id="liveDate"></p>
-          <!-- Table -->
+          
           <table class="transaction-table">
             <tr>
-              <th> <img class="icons" src = "images/mta.jpg"> <p class ="location">  Metropolitan Transportatio...  </p> 
+              <th> <img class="icons" src = "images/mta.jpg"> <p class ="location">  Metropolitan Transpor...  </p> 
               <p class="price"> $3.45 > </p> 
               <p class="description"> Pending - Apple Pay </p>
               <p class="description2"> Sunday </p> </th>
