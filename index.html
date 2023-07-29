@@ -11,16 +11,26 @@
 
   <style>
     .done {
+      font-size: 20px;
       font-family: "San Francisco", Arial, sans-serif;
+      vertical-align: left;
+      margin-left: -30px;
+      margin-top: -40px;
     }
 
     .trans {
       font-family: "San Francisco", Arial, sans-serif;
-      font-size: 25px;
+      font-size: 20px;
+      vertical-align: left;
+      margin-left: -30px;
+      margin-top: 5px;
     }
 
     .debit {
-      width: 140%;
+      width: 125%;
+      vertical-align: left;
+      margin-left: -40px;
+
     }
     body {
       background-color: #f2f1f6; /* Replace this with your desired background color */
@@ -34,7 +44,9 @@
   border: 1px solid #ddd;
   border-radius: 10px; /* Adjust the radius to control the level of rounding */
   overflow: hidden; /* Hide overflow content for rounded corners */
-  padding: 20px; /* Add padding to create space between table content and walls */
+  padding: 10px; /* Add padding to create space between table content and walls */
+  vertical-align: left;
+  margin-left: -30px;
 }
 
     .transaction-table th,
@@ -132,7 +144,7 @@
           <h1></h1>
           <p class="done"><b>Done</b></p>
           <img class="debit" src="images/debitcard.png" alt="Slide 1">
-          <br> </br>
+          
           <p class="trans"><b>Latest Transactions </b></p>
           <p id="liveDate"></p>
           <!-- Table -->
