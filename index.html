@@ -11,11 +11,11 @@
 
   <style>
     .done {
-      font-size: 20px;
+      font-size: 15px;
       font-family: "San Francisco", Arial, sans-serif;
       vertical-align: left;
-      margin-left: -30px;
-      margin-top: -40px;
+      margin-left: -10px;
+      margin-top: -10px;
     }
 
     .trans {
@@ -32,8 +32,19 @@
       margin-left: -40px;
 
     }
+    .header-block {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: #fff; /* Change the background color as needed */
+      padding: 10px 20px;
+      background-color: #e5e4eb;
+      /*box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: Add a shadow effect */
+    }
     body {
-      background-color: #f2f1f6; /* Replace this with your desired background color */
+      background-color: #e5e4eb; /* Replace this with your desired background color */
+      padding-top:  50px;
   }
     /* Custom table styles */
     .transaction-table {
@@ -142,7 +153,9 @@
       <div class="carousel-item active">
         <div class="container-fluid p-5">
           <h1></h1>
+           <div class="header-block">
           <p class="done"><b>Done</b></p>
+        </div>
           <img class="debit" src="images/debitcard.png" alt="Slide 1">
           
           <p class="trans"><b>Latest Transactions </b></p>
